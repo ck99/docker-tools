@@ -1,0 +1,12 @@
+#! /bin/bash
+
+REMOTE_TARBALL=$1
+DESTINATION=$2
+TARBALL_NAME=${REMOTE_TARBALL##*/}
+TARBALL_BASE_NAME=${TARBALL_NAME%.tar.gz}
+
+cd /tmp && \
+  curl -LOk $REMOTE_TARBALL && \
+  tar xvzf $TARBALL_NAME && \
+  mv ./$TARBALL_BASE_NAME $DESTINATION && \
+  rm -f $TARBALL_NAME
